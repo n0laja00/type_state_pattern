@@ -38,6 +38,7 @@ impl Door<Locked> {
         }
     }
 
+    //We return an unlocked door.
     pub fn unlock(self) -> Door<Unlocked> {
         println!("The door has been unlocked! Let's walk inside!");
         Door {
@@ -54,6 +55,7 @@ impl Door<Locked> {
 }
 
 impl Door<Unlocked> {
+    //We return a locked door
     pub fn lock(self) -> Door<Locked> {
         println!("Walked out and locked the door!");
         Door {
@@ -116,13 +118,13 @@ fn main() {
         };
 
         if door.check(tried_address) {
-            let mut door = door.unlock();
+            let mut door = door.unlock(); //We call a method unlock to set the State of the door to UNlocked
             door.list_furniture();
             door.add_furniture(String::from("shelf"), String::from("brown"));
             door.list_furniture();
             door.add_furniture(String::from("chair"), String::from("yellow"));
             door.list_furniture();
-
+            //Always lock the door behind you...
             let mut door = door.lock();
             door.sneak_inside();
             break;
